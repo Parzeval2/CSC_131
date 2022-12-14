@@ -13,6 +13,8 @@
 class Fraction:
     def __init__(self, num=0, den=1):
         self.num = num
+        if (den == 0):
+            den = 1
         self.den = den
 
     @property
@@ -32,5 +34,12 @@ class Fraction:
         if (value != 0):
             self._den = value
 
+    def get_real(self):
+        return float(self.num) / self.den
+    def __str__(self):
+        return "{}/{} ({})".format(self.num, self.den, self.get_real())
+
 f1 = Fraction(1, 4)
-print("{}/{}".format(f1.num, f1.den))
+print(f1)
+f2 = Fraction(1, 0)
+print(f2)
