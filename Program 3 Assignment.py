@@ -1,7 +1,7 @@
 #############################################################
 # author: Grant Cooper
 # date: 12/14/2022
-# desc:
+# desc: made a class for a patient and added constraints
 #############################################################
 
 # The patient class has a name, age, and weight. Only the name and age
