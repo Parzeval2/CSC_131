@@ -1,4 +1,4 @@
-#fraction class
+# fraction class
 # - state
 # --- numerator
 # --- denominator
@@ -34,27 +34,57 @@ class Fraction:
         if (value != 0):
             self._den = value
 
+    def __sub__(self, other):
+        num = (self.num * other.den) - (other.num * self.den)
+        den = (self.den * other.den)
+        return Fraction(num, den)
+
+    def __mul__(self, other):
+        num = self.num * other.num
+        den = self.den * other.den
+        return Fraction(num, den)
+
+    def __truediv__(self, other):
+        num = self.num * other.den
+        den = self.den * other.num
+        return Fraction(num, den)
+
+    def __add__(self, other):
+        num = (self.num * other.den) + (other.num * self.den)
+        den = self.den * other.den
+        sum = Fraction(num, den)
+        sum.reduce()
+        return sum
+
     def reduce(self):
         gcd = 1
         minimum = min(abs(self.num), abs(self.den))
 
-        #find common divisors
+        # find common divisors
         for i in range(2, int(minimum + 1)):
-            if self.num % i == 0 and self.den % i == 0:
+            if (self.num % i == 0 and self.den % i == 0):
                 gcd = i
 
-        #divide numerator and denominator by the GCD
+        # divide numerator and denominator by the GCD
         self.num /= gcd
         self.den /= gcd
-        #if the numerator is 0, set the denominator to 1
+        # if the numerator is 0, set the denominator to 1
         if (self.num == 0):
             self.den = 1
+
     def get_real(self):
         return float(self.num) / self.den
+
     def __str__(self):
+        self.reduce()
         return "{}/{} ({})".format(self.num, self.den, self.get_real())
 
-f1 = Fraction(1, 4)
+
+f1 = Fraction(3, 12)
 print(f1)
-f2 = Fraction(1, 0)
+f2 = Fraction(5, 7)
 print(f2)
+print(f1 + f2)
+print(f1 / f2)
+print(f1 * f2)
+print(f1 - f2)
