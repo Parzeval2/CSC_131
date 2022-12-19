@@ -134,3 +134,9 @@ while True:
     # exit the game if the player types 'quit', 'exit', or 'bye'
     if (action == "quit" or action == "exit" or action == "bye"):
         break
+
+    # set a default response
+    response = "I dont understand. Try <verb> <noun>. Valid verbs are go, look, and take."
+
+    # split the user input into words and store the words in a list
+    words = action.split()
