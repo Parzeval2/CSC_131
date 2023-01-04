@@ -12,6 +12,11 @@ class Room:
     def exits(self):
         return self._name
 
+    # name accessor
+    @property
+    def name(self):
+        return self._name
+
     @name.setter
     def self(self, value):
         self._name = value
@@ -74,7 +79,7 @@ def create_rooms():
     r1.add_exit("South", r3)
     r1.add_grabbable("Key")
     r1.add_item("Chair", "Its made of wicker")
-    r1.add_item("Table", "Its made of oak, and a golden key rests on top"
+    r1.add_item("Table", "Its made of oak, and a golden key rests on top")
 
     # create room 2
     r2.add_exit("West", r1)
@@ -115,7 +120,7 @@ while True:
     status = "{}\nYou are carrying: {}".format(current_room, inventory)
 
     # If the current room is None, the player is dead
-    if (current_room = None):
+    if (current_room == None):
         death()
         break
 
@@ -140,3 +145,52 @@ while True:
 
     # split the user input into words and store the words in a list
     words = action.split()
+
+    # the game only understands 2 word inputs
+    if (len(words) == 2):
+        verb = words[0]
+        noun = words[1]
+
+        # the verb is go
+        if (verb == "go"):
+            # set a default response
+            response = "Invalid exit."
+
+            # check for valid exits in the current room
+            for i in range(len(current_room.exits)):
+                # a valid exit is found
+                if (noun == current_room.exits[i]):
+                    # change the current room
+                    current_room = current_room.exit_locations[i]
+                    # set the response
+                    response = "Room Changed."
+                    # no need to check for more exits
+                    break
+        # the verb is look
+        elif (verb == "look"):
+            # set a default response
+            response = "I don't see that item."
+            # check for valid items in the current room
+            for i in range(len(current_room.items)):
+                # a valid item is found
+                if (noun == current_room.items[i]):
+                    # set the response to the items description
+                    response = current_room.items_description[i]
+                    break
+        # verb is take
+        elif (verb == "take"):
+            # set a default response
+            response = "I don't see that item."
+
+            # check for valid grabbable items in the current room
+            for grabbable in current_room.grabbables:
+                # a valid grabbable item is found
+                if (noun == grabbable):
+                    # add the grabbable item to the player's inventory
+                    current_room.del_grabbable(grabbable)
+                    # set the response
+                    response = "Item Grabbed!"
+                    break
+
+    # display the response
+    print("\n{}".format(response))
