@@ -55,9 +55,7 @@ class Room:
     # return a string description of the room
     def __str__(self):
         # room name
-        s = "You are in {}.\n".format(self.name)
-        # items in the room
-        s += "You see: "
+        s = f"You are in {self.name}.\nYou see: "
         for item in self.items:
             s += f"{item} "
         s += "\n"
