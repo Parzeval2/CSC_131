@@ -12,13 +12,17 @@ class Room:
     def exits(self):
         return self._name
 
-    # name accessor
+    @exits.setter
+    def exits(self, value):
+        self._name = value
+
+    # name getter
     @property
     def name(self):
         return self._name
 
     @name.setter
-    def self(self, value):
+    def name(self, value):
         self._name = value
 
     # TODO:
@@ -55,12 +59,12 @@ class Room:
         # items in the room
         s += "You see: "
         for item in self.items:
-            s += item + " "
+            s += f"{item} "
         s += "\n"
         # exits from the room
         s += "Exits: "
         for exit in self.exits:
-            s += exit + " "
+            s += f"{exit} "
         return s
 
 
@@ -117,10 +121,10 @@ create_rooms()
 
 # game loop (Play forever until the player dies or asks to quit)
 while True:
-    status = "{}\nYou are carrying: {}".format(current_room, inventory)
+    status = f"{current_room}\nYou are carrying: {inventory}"
 
     # If the current room is None, the player is dead
-    if (current_room == None):
+    if current_room is None:
         death()
         break
 
@@ -137,7 +141,7 @@ while True:
     action = action.lower()
 
     # exit the game if the player types 'quit', 'exit', or 'bye'
-    if (action == "quit" or action == "exit" or action == "bye"):
+    if action in ["quit", "exit", "bye"]:
         break
 
     # set a default response
@@ -152,7 +156,7 @@ while True:
         noun = words[1]
 
         # the verb is go
-        if (verb == "go"):
+        if verb == "go":
             # set a default response
             response = "Invalid exit."
 
@@ -166,19 +170,16 @@ while True:
                     response = "Room Changed."
                     # no need to check for more exits
                     break
-        # the verb is look
-        elif (verb == "look"):
-            # set a default response
-            response = "I don't see that item."
-            # check for valid items in the current room
-            for i in range(len(current_room.items)):
-                # a valid item is found
-                if (noun == current_room.items[i]):
-                    # set the response to the items description
-                    response = current_room.items_description[i]
-                    break
-        # verb is take
-        elif (verb == "take"):
+        elif verb == "look":
+            response = next(
+                (
+                    current_room.items_description[i]
+                    for i in range(len(current_room.items))
+                    if (noun == current_room.items[i])
+                ),
+                "I don't see that item.",
+            )
+        elif verb == "take":
             # set a default response
             response = "I don't see that item."
 
@@ -193,4 +194,4 @@ while True:
                     break
 
     # display the response
-    print("\n{}".format(response))
+    print(f"\n{response}")
