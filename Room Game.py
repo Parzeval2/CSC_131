@@ -10,11 +10,11 @@ class Room:
     # getters and setters
     @property
     def exits(self):
-        return self._name
+        return self._exits
 
     @exits.setter
     def exits(self, value):
-        self._name = value
+        self._exits = value
 
     # name Accessor and mutator
     @property
