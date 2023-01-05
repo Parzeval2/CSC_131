@@ -16,7 +16,7 @@ class Room:
     def exits(self, value):
         self._name = value
 
-    # name getter
+    # name Accessor and mutator
     @property
     def name(self):
         return self._name
@@ -25,8 +25,41 @@ class Room:
     def name(self, value):
         self._name = value
 
-    # TODO:
-    # Create accessors and mutators for exits, exit_locations, items, item_descriptions, and grabbables
+    # exit location accessor and mutator
+    @property
+    def exit_location(self):
+        return self._exit_location
+
+    @exit_location.setter
+    def exit_location(self, value):
+        self._exit_location = value
+
+    # item description accessor and mutator
+    @property
+    def item_description(self):
+        return self._item_description
+
+    @item_description.setter
+    def item_description(self, value):
+        self._item_description = value
+
+    # item accessor and mutator
+    @property
+    def items(self):
+        return self._items
+
+    @items.setter
+    def items(self, value):
+        self._items = value
+
+    # grabbables accessor and mutator
+    @property
+    def grabbables(self):
+        return self._grabbables
+
+    @grabbables.setter
+    def grabbables(self, value):
+        self._grabbables = value
 
     # adds an exit to the room
     # exit is a string
