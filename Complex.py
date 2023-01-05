@@ -1,7 +1,9 @@
 ############################################################################
 # name: Grant Cooper
-# date:
-# description:
+# date: 1/5/2023
+# description: Complex Number class that has many overloaded operators.
+# couldnt get the output of the final division to be 2.999994 like it was in the paper but this works
+
 ###########################################################################
 
 # Don't forget to name this file Complex.py and place it in the same
@@ -46,18 +48,18 @@ class Complex:
     def __mul__(self, other):
         return f"{self.real * other.real - self.imaginary * other.imaginary} + {self.real * other.imaginary + self.imaginary * other.real}i"
 
-    # True div function has 2 vairables that are the real part of the division and the imaginary part
+    # True div function has 2 variables that are the real part of the division and the imaginary part
     # it then combines them once each individual part is divided independently
     def __truediv__(self, other):
-        real = ((self.real * other.real) + (self.imaginary * other.imaginary))
-        imaginary = ((self.real * other.imaginary) - (self.imaginary * other.real))
-        divisor = ((self.real ** 2) + (self.imaginary ** 2))
+        real = self.real * other.real + self.imaginary * other.imaginary
+        imaginary = self.real * other.imaginary - self.imaginary * other.real
+        divisor = other.real ** 2 + other.imaginary ** 2
         new_real = real / divisor
         new_imaginary = imaginary / divisor
-        return f"{new_real} + {new_imaginary}i"
+        return f"{new_real} - {new_imaginary}i"
 
     def __eq__(self, other):
-        return (self.real == other.real and self.imaginary == other.imaginary)
+        return self.real == other.real and self.imaginary == other.imaginary
 
     # Other functions e.g. reciprocal, conjugate, and __str__
     def reciprocal(self):
