@@ -1,4 +1,0 @@
-
-jpython:S1542"MRename function "setGPIO" to match the regular expression ^[a-z_][a-z0-9_]*$.(ùí†‡úÿÿÿÿ
-ipython:S1542	"LRename function "setNUM" to match the regular expression ^[a-z_][a-z0-9_]*$.(îÉûÓùÿÿÿÿ
-=python:S1481"%Remove the unused local variable "i".(Ýø‚é
