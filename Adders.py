@@ -1,34 +1,22 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
-inA = 25
-inB = 5
-outS = 17
-outC = 22
+def setGPIO():
+    gpio = [17, 18, 27, 22, 26, 12, 16, 20, 21]
+    GPIO.setup(gpio, GPIO.OUT)
+    return gpio
 
-GPIO.setmode(GPIO.BCM)
+def setNUM():
+    num = []
+    for i in range(0, 8):
+        num.append(randint(0,1))
+        return num
 
-GPIO.setup(inA,GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
-GPIO.setup(inB,GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
-GPIO.setup(outS,GPIO.OUT)
-GPIO.setup(outC,GPIO.OUT)
-
-try:
-    while True:
-        A = 0
-        B = 0
-        S = 0
-        C = 0
-
-        if (GPIO.input(inA) == GPIO.HIGH):
-            A = 1
-        if (GPIO.input(inB) == GPIO.HIGH):
-            B = 1
-        S = A ^ B
-        C = A & B
-
-        GPIO.output(outS,S)
-        GPIO.output(outC,C)
-
-except KeyboardInterrupt:
-    GPIO.cleanup()
+def display():
+    for i in range(len(sum)):
+        # if the i-th bit is 1, then turn the i-th LED on
+        if (sum[i] == 1):
+            GPIO.output(gpio[i], GPIO.HIGH)
+        # otherwise, turn it off
+        else:
+            GPIO.output(gpio[i], GPIO.LOW)
