@@ -49,40 +49,40 @@ class Patient:
             self._weight = weight
 
 
-################################################################
-# ****    DO NOT MODIFY ANYTHING BELOW THIS POINT!    ****
-################################# MAIN #########################
+class In(Patient):
+    def __init__(self, name, age, stay=5):
+        super().__init__(name, age)
+        self.name = name
+        self.age = age
+        self.stay = stay
 
-# Create three patient objects and print them out
-p1 = Patient("Ben Dover", 22)
-p2 = Patient("Helen Hywater", 16)
-p3 = Patient("Amanda Lynn", 45)
+    @property
+    def stay(self):
+        return self._stay
 
-print("\tName\t\tAge\tWeight")
-print("-" * 40)
-print("p1:\t{}\t{}\t{}".format(p1.name, p1.age, p1.weight))
-print("p2:\t{}\t{}\t{}".format(p2.name, p2.age, p2.weight))
-print("p3:\t{}\t{}\t{}".format(p3.name, p3.age, p3.weight))
-print("-" * 40)
+    @stay.setter
+    def stay(self, stay):
+        if (stay < 0):
+            self._stay = 0
+        else:
+            self._stay = stay
 
-# Change their ages and print them out
-p1.age = -5
-p2.age = 100
-p3.increaseAge()
-p3.increaseAge()
+    def __str__(self):
+        return f"IN-  {self.name:<16} {self.age:<3} {self.weight:<5} {self.stay:<1}"
 
-print("p1:\t{}\t{}\t{}".format(p1.name, p1.age, p1.weight))
-print("p2:\t{}\t{}\t{}".format(p2.name, p2.age, p2.weight))
-print("p3:\t{}\t{}\t{}".format(p3.name, p3.age, p3.weight))
-print("-" * 40)
+class Out(Patient):
+    def __init__(self, name, age):
+        super().__init__(name, age)
 
-# Change other instance variables and print them out
-p1.weight = 2000
-p2.name = "Justin Thyme"
-p2.weight = 220
-p3.weight = -50
+    def __str__(self):
+        return f"OUT- {self.name:<16} {self.age:<3} {self.weight:<5}"
 
-print("p1:\t{}\t{}\t{}".format(p1.name, p1.age, p1.weight))
-print("p2:\t{}\t{}\t{}".format(p2.name, p2.age, p2.weight))
-print("p3:\t{}\t{}\t{}".format(p3.name, p3.age, p3.weight))
-print("-" * 40)
+class ICU(In):
+    def __init__(self, name, age):
+        super().__init__(name, age)
+
+    days = 5
+
+class CheckUp(Out):
+    def __init__(self, name, age):
+        super().__init__(name, age)
