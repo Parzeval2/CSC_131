@@ -6,6 +6,8 @@
 import RPi.GPIO as GPIO
 # bring in GPIO functionality
 from random import randint
+
+
 # to generate random integers
 
 def setGPIO():
@@ -14,6 +16,7 @@ def setGPIO():
     # set them up as output pins
     GPIO.setup(gpio, GPIO.OUT)
     return gpio
+
 
 # function that randomly generates an 8-bit binary number
 def setNum():
@@ -25,6 +28,7 @@ def setNum():
         num.append(randint(0, 1))
     return num
 
+
 # displays the sum (by turning on the appropriate LEDs)
 def display():
     for i in range(len(sum)):
@@ -35,21 +39,23 @@ def display():
         else:
             GPIO.output(gpio[i], GPIO.LOW)
 
+
 # function that implements a full adder using two half adders
 # inputs are Cin, A, and B; outputs are S and Cout
 # this is the function that you need to implement
 def fullAdder(Cin, A, B):
     S = Cin ^ (A ^ B)
-    #Calculate value of carry
-    Cout = bin&(not(A ^ B))| not(A)&B
+    # Calculate value of carry
+    Cout = (A & B) | (Cin & (A ^ B))
     return S, Cout
     # we can return more than one value!
 
+
 # controls the addition of each 8-bit number to produce a sum
 def calculate(num1, num2):
-    Cout = 0 # the initial Cout is 0
-    sum = [] # initialize the sum
-    n = len(num1) - 1 # position of the right-most bit of num1
+    Cout = 0  # the initial Cout is 0
+    sum = []  # initialize the sum
+    n = len(num1) - 1  # position of the right-most bit of num1
     # step through each bit, from right-to-left
     while (n >= 0):
         # isolate A and B (the current bits of num1 and num2)
@@ -68,6 +74,7 @@ def calculate(num1, num2):
     sum.insert(0, Cout)
     return sum
 
+
 # use the Broadcom pin scheme
 GPIO.setmode(GPIO.BCM)
 # setup the GPIO pins
@@ -84,5 +91,5 @@ print("= ", sum)
 # turn on the appropriate LEDs to "display" the sum
 display()
 # wait for user input before cleaning up and resetting GPIO pins
-raw_input("Press ENTER to terminate")
+input("Press ENTER to terminate")
 GPIO.cleanup()
