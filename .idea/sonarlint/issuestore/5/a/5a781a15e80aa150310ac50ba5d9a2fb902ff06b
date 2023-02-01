@@ -1,0 +1,12 @@
+
+jpython:S1542"MRename function "setGPIO" to match the regular expression ^[a-z_][a-z0-9_]*$.(ùí†‡úÿÿÿÿ
+ipython:S1542"LRename function "setNum" to match the regular expression ^[a-z_][a-z0-9_]*$.(¹‹£áşÿÿÿÿ
+=python:S1481"%Remove the unused local variable "i".(İø‚é
+ipython:S117."MRename this parameter "A" to match the regular expression ^[_a-z][a-z0-9_]*$.(İæÑüÿÿÿÿ
+ipython:S117."MRename this parameter "B" to match the regular expression ^[_a-z][a-z0-9_]*$.(İæÑüÿÿÿÿ
+kpython:S117."ORename this parameter "Cin" to match the regular expression ^[_a-z][a-z0-9_]*$.(İæÑüÿÿÿÿ
+lpython:S1171"URename this local variable "Cout" to match the regular expression ^[_a-z][a-z0-9_]*$.(¾«îÙ
+lpython:S1542."ORename function "fullAdder" to match the regular expression ^[a-z_][a-z0-9_]*$.(İæÑüÿÿÿÿ
+ppython:S117A"TRename this local variable "Cin" to match the regular expression ^[_a-z][a-z0-9_]*$.(æûÓ¢ıÿÿÿÿ
+lpython:S1178"URename this local variable "Cout" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÌÑŠ
+Hpython:S58069"+Rename this variable; it shadows a builtin.(ÓÀòÔûÿÿÿÿ

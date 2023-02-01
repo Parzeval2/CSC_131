@@ -1,0 +1,6 @@
+
+_python:S2208"GImport only needed names or import the module and then use its members.(ï€¢
+mpython:S117"WRename this local variable "Label1" to match the regular expression ^[_a-z][a-z0-9_]*$.(àËñ
+spython:S117"WRename this local variable "Label2" to match the regular expression ^[_a-z][a-z0-9_]*$.(¿õ‰úúÿÿÿÿ
+npython:S117"WRename this local variable "Label3" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÅËÙ¯
+Bpython:S125"Remove this commented out code.(¹ñ§§ùÿÿÿÿ8ÖÓâŸß0
